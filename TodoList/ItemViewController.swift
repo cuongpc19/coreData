@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 class ItemViewController: UIViewController {
     
-    
+    var manageObjectContext : NSManagedObjectContext!
     @IBOutlet weak var textField: UITextField!
     
     override func viewDidLoad() {
@@ -35,20 +35,17 @@ class ItemViewController: UIViewController {
     
     @IBAction func save(_ sender: Any) {
         guard let text = textField.text else { return }
-        let appdelegate = AppDelegate()
-        let manageObjectContext = appdelegate.persistentContainer.viewContext
-        let item = NSEntityDescription.insertNewObject(forEntityName: "Item", into: manageObjectContext) as! Item
-        item.name = text
+        let item = NSEntityDescription.insertNewObject(forEntityName: "Item", into: self.manageObjectContext!) as? Item
+        item?.name = text
         
         do {
-             try manageObjectContext.save()
-            
+             try manageObjectContext?.save()
         }
         catch let error as NSError
         {
             print("error: \(error)")
         }
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
    
     @IBAction func cancel(_ sender: Any) {

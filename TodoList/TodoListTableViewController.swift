@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 class TodoListTableViewController: UITableViewController {
     var items : [Item] = []
+    var manageObjectContext : NSManagedObjectContext!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,9 +22,7 @@ class TodoListTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func fetchData() {
-        let appdelegate = AppDelegate()
-        let manageObjectContext = appdelegate.persistentContainer.viewContext
+    func fetchData() {       
         let fetchRequest = NSFetchRequest<Item>(entityName: "Item")
         let entityDescription = NSSortDescriptor(key: "name", ascending: true)
         fetchRequest.sortDescriptors = [entityDescription]
@@ -94,14 +93,21 @@ class TodoListTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        let segueName = segue.identifier
+        if segueName == "addTodo" {
+            guard let destination = segue.destination as? ItemViewController else {
+                return
+            }
+            destination.manageObjectContext = self.manageObjectContext
+        }
     }
-    */
+    
     
 }

@@ -35,7 +35,7 @@
                     <navigationItem key="navigationItem" title="TodoList" id="XEk-RO-W0Q">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="LVu-6g-jXv">
                             <connections>
-                                <segue destination="cXZ-Fg-WV2" kind="show" id="N8W-hX-Mhb"/>
+                                <segue destination="v8h-LU-de9" kind="show" identifier="addTodo" id="c1v-h8-10L"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -107,24 +107,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZjB-v9-184" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-144.80000000000001" y="127.28635682158921"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="ct5-u6-27Z">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cXZ-Fg-WV2" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="C6C-B2-sSc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="v8h-LU-de9" kind="relationship" relationship="rootViewController" id="Irg-8q-aQT"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DjJ-eb-PIA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1676" y="148.87556221889056"/>
         </scene>
     </scenes>
 </document>

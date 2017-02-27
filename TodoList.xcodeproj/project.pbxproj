@@ -16,6 +16,7 @@
 		44E45F5A1E63101300DF0FA7 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E45F591E63101300DF0FA7 /* ItemViewController.swift */; };
 		44E45F5F1E631C5300DF0FA7 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E45F5D1E631C5300DF0FA7 /* Item+CoreDataClass.swift */; };
 		44E45F601E631C5300DF0FA7 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E45F5E1E631C5300DF0FA7 /* Item+CoreDataProperties.swift */; };
+		44E45F621E63DDE800DF0FA7 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E45F611E63DDE800DF0FA7 /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		44E45F591E63101300DF0FA7 /* ItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		44E45F5D1E631C5300DF0FA7 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
 		44E45F5E1E631C5300DF0FA7 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		44E45F611E63DDE800DF0FA7 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				44E45F3E1E630D8A00DF0FA7 /* Main.storyboard */,
 				44E45F591E63101300DF0FA7 /* ItemViewController.swift */,
 				44E45F4F1E630E6800DF0FA7 /* TodoListTableViewController.swift */,
+				44E45F611E63DDE800DF0FA7 /* CoreDataStack.swift */,
 				44E45F441E630D8B00DF0FA7 /* Assets.xcassets */,
 				44E45F461E630D8B00DF0FA7 /* LaunchScreen.storyboard */,
 				44E45F491E630D8B00DF0FA7 /* Info.plist */,
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44E45F621E63DDE800DF0FA7 /* CoreDataStack.swift in Sources */,
 				44E45F601E631C5300DF0FA7 /* Item+CoreDataProperties.swift in Sources */,
 				44E45F5F1E631C5300DF0FA7 /* Item+CoreDataClass.swift in Sources */,
 				44E45F3B1E630D8A00DF0FA7 /* AppDelegate.swift in Sources */,
