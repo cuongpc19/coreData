@@ -10,6 +10,7 @@
 import Foundation
 import CoreData
 class CoreDataStack {
+    static let sharedInstance = CoreDataStack()
     let modelName = "TodoList"
     private lazy var applicationDocumentsDirectory: NSURL = {
         let urls = FileManager.default.urls(

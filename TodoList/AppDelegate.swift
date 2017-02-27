@@ -16,12 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var coreDataStack = CoreDataStack()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let navigationController = window?.rootViewController as! UINavigationController
-        let todoListTableController = navigationController.topViewController as! TodoListTableViewController
-        todoListTableController.manageObjectContext = coreDataStack.context
         
-        
-        //ItemVC.manageObjectContext = coreDataStack.context
     
         return true
     }

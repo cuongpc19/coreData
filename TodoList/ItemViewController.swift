@@ -11,12 +11,12 @@ import UIKit
 import CoreData
 class ItemViewController: UIViewController {
     
-    var manageObjectContext : NSManagedObjectContext!
+    var manageObjectContext = CoreDataStack.sharedInstance.context
     @IBOutlet weak var textField: UITextField!
-    
+    var currentTodo : Item?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        textField.text = currentTodo?.name
         // Do any additional setup after loading the view.
     }
 
@@ -34,21 +34,60 @@ class ItemViewController: UIViewController {
     
     
     @IBAction func save(_ sender: Any) {
-        guard let text = textField.text else { return }
-        let item = NSEntityDescription.insertNewObject(forEntityName: "Item", into: self.manageObjectContext!) as? Item
-        item?.name = text
         
-        do {
-             try manageObjectContext?.save()
+        let isPresenting = self.isPresenting()
+        
+        if isPresenting {
+            guard let text = textField.text else { return }
+            let item = NSEntityDescription.insertNewObject(forEntityName: "Item", into: self.manageObjectContext) as? Item
+            item?.name = text
+            
+            do {
+                try manageObjectContext.save()
+            }
+            catch let error as NSError
+            {
+                print("error: \(error)")
+            }
+            dismiss(animated: true, completion: nil)
         }
-        catch let error as NSError
-        {
-            print("error: \(error)")
+        else if let owningNavigationController = navigationController{
+            guard let text = textField.text else { return }
+            currentTodo?.name = text
+            do {
+                try manageObjectContext.save()
+            }
+            catch let error as NSError
+            {
+                print("error: \(error)")
+            }
+            owningNavigationController.popViewController(animated: true)
+
         }
-        navigationController?.popViewController(animated: true)
+        
     }
    
     @IBAction func cancel(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        let isPresenting = self.isPresenting()
+        
+        if isPresenting {
+            dismiss(animated: true, completion: nil)
+        }
+        else if let owningNavigationController = navigationController{
+            owningNavigationController.popViewController(animated: true)
+        }
+        else {
+            fatalError("The ItemVC is not inside a navigation controller.")
+        }
+    }
+    func isPresenting() -> Bool {
+        let isPresenting = presentingViewController is UINavigationController
+        
+        if isPresenting {
+            return true
+        }
+        else {
+            return false
+        }
     }
 }

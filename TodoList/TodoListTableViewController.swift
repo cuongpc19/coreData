@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 class TodoListTableViewController: UITableViewController {
     var items : [Item] = []
-    var manageObjectContext : NSManagedObjectContext!
+    var manageObjectContext = CoreDataStack.sharedInstance.context
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,6 +25,7 @@ class TodoListTableViewController: UITableViewController {
     func fetchData() {       
         let fetchRequest = NSFetchRequest<Item>(entityName: "Item")
         let entityDescription = NSSortDescriptor(key: "name", ascending: true)
+        
         fetchRequest.sortDescriptors = [entityDescription]
         do {
             let results = try manageObjectContext.fetch(fetchRequest) as [Item]
@@ -105,7 +106,15 @@ class TodoListTableViewController: UITableViewController {
             guard let destination = segue.destination as? ItemViewController else {
                 return
             }
-            destination.manageObjectContext = self.manageObjectContext
+           
+            //destination.manageObjectContext = self.manageObjectContext
+        }
+        else if (segueName == "editTodo") {
+            guard let destination = segue.destination as? ItemViewController else {
+                return
+            }
+            let selectedCell = tableView.indexPathsForSelectedRows?.first?.row
+            destination.currentTodo = items[selectedCell!]
         }
     }
     
