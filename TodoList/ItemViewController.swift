@@ -8,9 +8,9 @@
 //
 
 import UIKit
-
+import CoreData
 class ItemViewController: UIViewController {
-    var item = Item()
+    
     
     @IBOutlet weak var textField: UITextField!
     
@@ -30,15 +30,26 @@ class ItemViewController: UIViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        super.prepare(for: segue, sender: sender)
-        item?.name = textField.text
-        
-    }
     
-
+    
+    
+    @IBAction func save(_ sender: Any) {
+        guard let text = textField.text else { return }
+        let appdelegate = AppDelegate()
+        let manageObjectContext = appdelegate.persistentContainer.viewContext
+        let item = NSEntityDescription.insertNewObject(forEntityName: "Item", into: manageObjectContext) as! Item
+        item.name = text
+        
+        do {
+             try manageObjectContext.save()
+            
+        }
+        catch let error as NSError
+        {
+            print("error: \(error)")
+        }
+        dismiss(animated: true, completion: nil)
+    }
    
     @IBAction func cancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)

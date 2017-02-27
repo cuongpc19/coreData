@@ -7,24 +7,36 @@
 //
 
 import UIKit
-
+import CoreData
 class TodoListTableViewController: UITableViewController {
-    var items = [Item()]
+    var items : [Item] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        fetchData()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    func fetchData() {
+        let appdelegate = AppDelegate()
+        let manageObjectContext = appdelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<Item>(entityName: "Item")
+        let entityDescription = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [entityDescription]
+        do {
+            let results = try manageObjectContext.fetch(fetchRequest) as [Item]
+            items = results
+        }
+        catch let error as NSError {
+            print("error: \(error)")
+        }
+        tableView.reloadData()
 
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -40,7 +52,7 @@ class TodoListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = items[indexPath.row]?.name
+        cell.textLabel?.text = items[indexPath.row].name
         // Configure the cell...
 
         return cell
@@ -91,11 +103,5 @@ class TodoListTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func unwindFromItemVC(sender : UIStoryboardSegue) {
-        let source = sender.source as! ItemViewController
-        let item = source.item
-        items.append(item)
-        tableView.reloadData()
-    }
-
+    
 }
