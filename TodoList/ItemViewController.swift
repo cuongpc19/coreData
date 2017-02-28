@@ -9,14 +9,18 @@
 
 import UIKit
 import CoreData
-class ItemViewController: UIViewController {
-    
+class ItemViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+   
+    @IBOutlet weak var itemTableView: UITableView!
     var manageObjectContext = CoreDataStack.sharedInstance.context
     @IBOutlet weak var textField: UITextField!
     var currentTodo : Item?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         textField.text = currentTodo?.name
+        itemTableView.delegate = self
+        itemTableView.dataSource = self
         // Do any additional setup after loading the view.
     }
 
@@ -25,13 +29,25 @@ class ItemViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        itemTableView.reloadData()
+    }
     
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let segueName = segue.identifier
+        if  segueName == "addDetailItem" {
+            let navagationController = segue.destination as! UINavigationController
+            let detailItemVC = navagationController.topViewController! as! DetailItemViewController
+            detailItemVC.currentItem = currentTodo
+        }
+    }
+    @IBAction func addDetailItem(_ sender: Any) {
+        self.performSegue(withIdentifier: "addDetailItem", sender: self)
+    }
     
     @IBAction func save(_ sender: Any) {
         
@@ -90,4 +106,20 @@ class ItemViewController: UIViewController {
             return false
         }
     }
+    //MARK: Table view
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return currentTodo?.detailItems?.count ?? 0
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CellDetailItem", for: indexPath)        
+        // Configure the cell...
+        let detailItem = currentTodo?.detailItems?[indexPath.row] as! DetailItem
+        cell.textLabel?.text = detailItem.nameDetail
+        return cell
+    }
+    
+    
 }

@@ -73,8 +73,6 @@ class TodoListTableViewController: UITableViewController {
         if editingStyle == .delete {
             
             let currentItem = items[indexPath.row]
-            let indexPathrow = indexPath.row
-            
             manageObjectContext.delete(currentItem)
             do {
                 try manageObjectContext.save()
@@ -127,6 +125,9 @@ class TodoListTableViewController: UITableViewController {
             }
             let selectedCell = tableView.indexPathsForSelectedRows?.first?.row
             destination.currentTodo = items[selectedCell!]
+        }
+        else if (segueName == "addDetailItem") {
+            print("addDetailItem")
         }
     }
     
