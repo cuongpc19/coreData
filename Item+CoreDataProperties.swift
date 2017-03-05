@@ -2,7 +2,7 @@
 //  Item+CoreDataProperties.swift
 //  TodoList
 //
-//  Created by AgribankCard on 3/1/17.
+//  Created by AgribankCard on 3/5/17.
 //  Copyright © 2017 cuongpc. All rights reserved.
 //
 
@@ -17,7 +17,15 @@ extension Item {
     }
 
     @NSManaged public var name: String?
+    
     @NSManaged public var detailItems: NSOrderedSet?
+    
+    var titleSection: String? {
+        let strindex = name?.index((name?.startIndex)!, offsetBy: 1)
+        return name?.substring(to: strindex!)
+        
+    }
+    
 
 }
 

@@ -58,6 +58,8 @@ class ItemViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             let item = NSEntityDescription.insertNewObject(forEntityName: "Item", into: self.manageObjectContext) as? Item
             item?.name = text
             
+            //item?.titleSection = "section 2"
+            
             do {
                 try manageObjectContext.save()
             }

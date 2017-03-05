@@ -6,10 +6,11 @@
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="titleSection" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
         <relationship name="detailItems" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="DetailItem" inverseName="item" inverseEntity="DetailItem" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="75"/>
         <element name="DetailItem" positionX="-63" positionY="-9" width="128" height="75"/>
+        <element name="Item" positionX="-63" positionY="-18" width="128" height="90"/>
     </elements>
 </model>

@@ -33,7 +33,7 @@
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="KIL-8k-b2q" id="tEz-E3-doH"/>
-                            <outlet property="delegate" destination="KIL-8k-b2q" id="rQ8-Xq-hW3"/>
+                            <outlet property="delegate" destination="KIL-8k-b2q" id="27S-gb-GzW"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="TodoList" id="XEk-RO-W0Q">
@@ -51,7 +51,6 @@
         <!--Item View Controller-->
         <scene sceneID="HrS-0t-YAK">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ueG-re-Mlv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="v8h-LU-de9" customClass="ItemViewController" customModule="TodoList" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Y6c-3b-NOk"/>
@@ -82,7 +81,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DoT-tZ-Ubt" id="3lF-lR-Kw7">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -121,6 +120,7 @@
                         <segue destination="8wt-aX-QRd" kind="presentation" identifier="addDetailItem" id="dXE-Rl-tI8"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ueG-re-Mlv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1624.8" y="671.51424287856082"/>
         </scene>
